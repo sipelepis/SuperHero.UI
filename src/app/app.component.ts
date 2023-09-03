@@ -8,8 +8,9 @@ import { SuperHeroService } from './shared/services/super-hero.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  displayedColumns: string[] = ['name', 'firstName', 'lastName', 'place'];
+  displayedColumns: string[] = ['name', 'firstName', 'lastName', 'place', 'actions'];
   title = 'SuperHero.UI';
+  heroToEdit?: SuperHero;
   heroes: SuperHero[] = [];
   constructor(private superHeroService: SuperHeroService) {
 
@@ -19,5 +20,14 @@ export class AppComponent {
     .getSuperHeroes()
     .subscribe((result: SuperHero[])=>(this.heroes = result));
     console.log(this.heroes);
+  }
+  updateHeroList(heroes: SuperHero[]){
+    this.heroes = heroes;
+  }
+  editHero(hero: SuperHero){
+    this.heroToEdit = hero
+  }
+  initNewHero(){
+    this.heroToEdit = new SuperHero();
   }
 }

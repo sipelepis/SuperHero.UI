@@ -1,0 +1,52 @@
+<div *ngIf="hero" class="container mx-auto text-center isolate mt-10">
+    <p class="font-bold">Editing Hero ID: {{hero.id}}</p>
+    <form action="#" method="POST" class=" mx-auto mt-16 max-w-2xl sm:mt-20 text-primary" [formGroup]="contactForm">
+        <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+            <div class="sm:col-span-2">
+                <mat-form-field class="example-full-width">
+                  <mat-label for="name" class="text-sm font-semibold leading-6">Name</mat-label>
+                  <input matInput [(ngModel)]="hero.name"  placeholder="Spooder Mang" type="text" name="name" id="name" class="input-ringless text-secondary block w-full rounded-md" formControlName="nameValidator" required>
+                  <mat-error *ngIf="contactForm.get('nameValidator')?.invalid">
+                    {{checkFLName("nameValidator", "Name")}}
+                </mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="example-full-width">
+                    <mat-label for="first-name" class="text-sm font-semibold leading-6">First name</mat-label>
+                    <input matInput [(ngModel)]="hero.firstName" placeholder="Steve" type="text" name="first-name" id="first-name" class="input-ringless text-secondary block w-full rounded-md" formControlName="firstnameValidator" required>
+                    <mat-error *ngIf="contactForm.get('firstnameValidator')?.invalid">
+                        {{checkFLName("firstnameValidator", "First Name")}}
+                    </mat-error>
+                  </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="example-full-width">
+                    <mat-label for="last-name" class="text-sm font-semibold leading-6">Last name</mat-label>
+                    <input matInput [(ngModel)]="hero.lastName" placeholder="Dela Cruz" type="text" name="last-name" id="last-name" class="input-ringless text-secondary block w-full rounded-md" formControlName="lastnameValidator" required>
+                    <mat-error *ngIf="contactForm.get('lastnameValidator')?.invalid">
+                        {{checkFLName("lastnameValidator", "Last Name")}}
+                    </mat-error>
+                  </mat-form-field>
+            </div>
+            <div class="sm:col-span-2">
+                <mat-form-field class="example-full-width">
+                  <mat-label for="place" class="text-sm font-semibold leading-6">Place</mat-label>
+                  <input matInput [(ngModel)]="hero.place" placeholder="Bootleg Tondo" type="text" name="place" id="place" class="input-ringless text-secondary block w-full rounded-md" formControlName="placeValidator" required>
+                  <mat-error *ngIf="contactForm.get('placeValidator')?.invalid">
+                    {{checkFLName("placeValidator", "Place")}}
+                  </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="mt-10">
+            <button type="submit" *ngIf="hero.id" (click)="putHero(hero)"  [disabled]="!contactForm.valid" class="block w-full rounded-md bg-[#00AC6A] px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#18B980]">Update</button>
+        </div>
+        <div class="mt-5">
+            <button type="button" *ngIf="hero.id" (click)="popHero(hero)"  class="block w-full rounded-md bg-[#ac0000] px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#b91818]">Delete</button>
+        </div>
+        <div class="mt-5">
+            <button type="submit" *ngIf="!hero.id" (click)="createHero(hero)" [disabled]="!contactForm.valid" class="block w-full rounded-md bg-[#004bac] px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#1863b9] ">Create</button>
+        </div>
+    </form>
+</div>
